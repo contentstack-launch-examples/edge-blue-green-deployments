@@ -75,8 +75,8 @@ export type Page ={
 }
 
 export type Context = {
-  res: any;
   resolvedUrl: string;
+  res: any;
   setHeader: Function;
   write: Function;
   end: Function;
