@@ -2,9 +2,11 @@ import * as contentstack from 'contentstack';
 import * as Utils from '@contentstack/utils';
 
 import ContentstackLivePreview from '@contentstack/live-preview-utils';
-import getConfig from 'next/config';
 
-const { publicRuntimeConfig } = getConfig();
+// Set via `env` in next.config.js (replaces next/config, removed in Next.js 16).
+const publicRuntimeConfig = JSON.parse(
+  process.env.CONTENTSTACK_PUBLIC_RUNTIME_CONFIG || '{}',
+);
 const envConfig = process.env.CONTENTSTACK_API_KEY
   ? process.env
   : publicRuntimeConfig;
