@@ -3,10 +3,8 @@ import withSerwistInit from '@serwist/next';
 const withPWA = withSerwistInit({
   swSrc: 'service-worker/sw.ts',
   swDest: 'public/sw.js',
-  // Match the former next-pwa behavior: no extra route caching on client-side navigation and
-  // no forced page reload when the browser comes back online.
+  // Match the former next-pwa behavior: no extra route caching on client-side navigation.
   cacheOnNavigation: false,
-  reloadOnOnline: false,
 });
 
 // Next.js 16 removed `publicRuntimeConfig` / `next/config`. The same values are now
