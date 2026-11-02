@@ -1,5 +1,12 @@
-const withPWA = require('next-pwa')({
-  dest: 'public'
+import withSerwistInit from '@serwist/next';
+
+const withPWA = withSerwistInit({
+  swSrc: 'service-worker/sw.ts',
+  swDest: 'public/sw.js',
+  // Match the former next-pwa behavior: no extra route caching on client-side navigation and
+  // no forced page reload when the browser comes back online.
+  cacheOnNavigation: false,
+  reloadOnOnline: false,
 });
 
 // Next.js 16 removed `publicRuntimeConfig` / `next/config`. The same values are now
@@ -25,5 +32,4 @@ const config = {
     CONTENTSTACK_PUBLIC_RUNTIME_CONFIG: JSON.stringify(publicRuntimeConfig),
   },
 };
-module.exports =
-  process.env.NODE_ENV === 'development' ? config : withPWA(config);
+export default process.env.NODE_ENV === 'development' ? config : withPWA(config);
